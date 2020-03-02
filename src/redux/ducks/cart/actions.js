@@ -1,16 +1,17 @@
 // 1. imports
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import axios from "axios"
 
 // 2. action definitions
 const TOGGLE_CART = "cart/TOGGLE_CART"
 const ADD_ITEM = "cart/ADD_ITEM"
 const DEL_ITEM = "cart/DEL_ITEM"
+// const TOTAL_ITEMS = "cart/TOTAL_ITEMS"
 // 3. initial state
 const initialState = {
   cart: [],
   isOpen: false
+  // total: 0,
 }
 
 // 4. reducer

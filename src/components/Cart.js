@@ -1,17 +1,26 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 //import { useProducts } from "../hooks"
 import { useItems } from "../hooks"
 import { FaShoppingCart } from "react-icons/fa"
 
-export default function(e) {
+export default function() {
   const { cart, toggle, isOpen, del } = useItems()
-  //const { product } = useProducts()
-  function onClick(e) {
-    e.preventDefault()
-  }
-  useEffect(() => {
-    console.log(cart)
+
+  const [total, setTotal] = useState(0)
+  const newCart = cart.map(product => {
+    return {
+      finalCart: product.find(product => product.price === product) //find(product => product.id === product)
+      //quantity: cart.filter(productId => productId === product).length
+    }
   })
+  useEffect(() => {
+    const amount = newCart.reduce((a, b) => {
+      return a + b.finalCart.price * b.price
+    }, 0)
+    setTotal(amount.toFixed(2))
+  }, [cart, newCart])
+  console.log(total)
+
   return (
     <div className="products">
       {isOpen ? <h1>OPEN</h1> : <h1>CLOSED</h1>}
@@ -27,6 +36,7 @@ export default function(e) {
           <button onClick={e => del(item)}>X</button>
         </div>
       ))}
+      <h3>Total{total}</h3>
     </div>
   )
 }

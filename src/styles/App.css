@@ -22,7 +22,6 @@ html {
 }
 .cart {
   width: 400px;
-  border: 1px solid black;
 }
 .header {
   display: flex;
