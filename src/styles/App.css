@@ -58,3 +58,14 @@ img {
   background-color: black;
   color: white;
 }
+.open {
+  width: 400px;
+  margin: auto;
+  transition: 2s;
+  transition: ease-in;
+}
+.closed {
+  width: 10px;
+  transition: 2s;
+  transition: ease-out;
+}

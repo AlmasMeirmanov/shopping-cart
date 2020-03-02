@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
     case DEL_ITEM:
       return {
         ...state,
-        cart: [...state.cart.filter(cart => cart !== action.payload)]
+        cart: [...state.cart.filter(product => product.id !== action.payload)]
       }
     default:
       return state
@@ -63,9 +63,10 @@ export function useItems() {
   const add = product => dispatch(addItem(product))
   const toggle = () => dispatch(toggleCart())
   const del = product => dispatch(delItem(product))
+  const total = cart.reduce((a, b) => a + b.price, 0).toFixed(2)
   useEffect(() => {
     console.log(cart)
   }, [])
 
-  return { cart, add, isOpen, toggle, del }
+  return { cart, add, isOpen, toggle, del, total }
 }
